@@ -16,6 +16,7 @@
         </div>
     </div>
 </div>
+<a href="{{ route('customers.create') }}" class=" mb-4 btn btn-success">Create Customer</a>
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">            
@@ -41,7 +42,7 @@
                                         @if ($user->email_verified_at == null)
                                             <p class="text-danger">Not Verified</p>
                                         @else
-                                            <p class="text-sucess">Not Verified</p>
+                                            <p class="text-success">Verified</p>
                                         @endif
                                     </td>
                                     <td>

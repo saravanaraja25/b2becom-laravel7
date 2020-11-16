@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class CustomerController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin'); // Here auth is middleware and admin is guard
+ 
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $user=User::all();
+        $user=User::where('email_verified_at','!=',null)->get();
+        return view('admin.customers.list')->with('user',$user);
+    }
+
+    public function unapproved()
+    {       
+        $user=User::where('email_verified_at','=',null)->get();
         return view('admin.customers.list')->with('user',$user);
     }
 
@@ -25,7 +42,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.customers.create');
     }
 
     /**
@@ -36,7 +53,18 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required'
+        ]);
+        $user = new User;
+        $user->name=$request->input('name');
+        $user->email=$request->input('email');
+        $user->password=Hash::make($request->input('password'));
+        $user->email_verified_at=$request->input('email_verified_at');
+        $user->save();
+        return redirect()->route('customers.index')->with('success','Customer Created.');
     }
 
     /**
@@ -47,7 +75,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -71,7 +99,12 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user= User::find($id);
+        $user->name=$request->input('name');
+        $user->email=$request->input('email');
+        $user->email_verified_at=$request->input('email_verified_at');
+        $user->save();
+        return redirect()->route('customers.index')->with('success','Customer Updated.');        
     }
 
     /**

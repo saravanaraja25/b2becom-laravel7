@@ -27,7 +27,10 @@
                         <div id="submenu-5" class="collapse submenu" style="">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('customers.index') }}">General Tables</a>
+                                    <a class="nav-link" href="{{ route('customers.index') }}">Approved</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('customers.unapproved') }}">Unapproved</a>
                                 </li>
                             </ul>
                         </div>
