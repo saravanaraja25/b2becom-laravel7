@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Address;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'address'=>'required',
+            'city'=>'required',
+            'pincode'=>'required'
         ]);
     }
 
@@ -64,10 +68,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'mobile'=>$data['mobile'],
+            'password' => Hash::make($data['password']),            
+            'shop_license' => $data['shoplicense'],
         ]);
+        $addr=new Address();
+        $addr->address=$data['address'];
+        $addr->city=$data['city'];
+        $addr->pincode=$data['pincode'];
+        $user->addresses()->save($addr);
+        $addr->save();
+        return $user;
     }
 }

@@ -60,6 +60,41 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
+
+                            <div class="col-md-6">
+                                <textarea name="address" id="address" cols="40" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="city" class="form-control" id="city">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="pin" class="col-md-4 col-form-label text-md-right">Pincode</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="pincode" class="form-control" id="pin">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mob" class="col-md-4 col-form-label text-md-right">Mobile</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="mobile" class="form-control" id="pin">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mob" class="col-md-4 col-form-label text-md-right">Shop License</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="shoplicense" class="form-control" id="pin">
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
