@@ -27,6 +27,7 @@
         @include('admin.layouts.inc.sidebar')
         <div class="dashboard-wrapper">
             <div class="container-fluid dashboard-content ">
+                @include('admin.layouts.inc.message')
                 @yield('content')
             </div>
             @include('admin.layouts.inc.footer')

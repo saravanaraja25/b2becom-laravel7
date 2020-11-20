@@ -107,6 +107,6 @@ class TyreSizeController extends Controller
     {
         $size=TyreSize::find($id);
         $size->delete();
-        return redirect()->route('tyresizes.index')->with('success','Size Deleted.');
+        return redirect()->route('tyresizes.index')->with('error','Size Deleted.');
     }
 }
