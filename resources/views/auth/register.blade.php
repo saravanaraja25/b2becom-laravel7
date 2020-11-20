@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -92,7 +92,7 @@
                             <label for="mob" class="col-md-4 col-form-label text-md-right">Shop License</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="shoplicense" class="form-control" id="pin">
+                                <input type="file" name="shoplicense" class="form-control" id="pin">
                             </div>
                         </div>
 

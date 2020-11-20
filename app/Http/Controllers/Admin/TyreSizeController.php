@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\User;
-use Illuminate\Support\Facades\Hash;
+use App\TyreSize;
+use App\Http\Controllers\Controller;
 
-class CustomerController extends Controller
+class TyreSizeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,14 +25,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $user=User::where('email_verified_at','!=',null)->get();
-        return view('admin.customers.list')->with('user',$user);
-    }
-
-    public function unapproved()
-    {       
-        $user=User::where('email_verified_at','=',null)->get();
-        return view('admin.customers.list')->with('user',$user);
+        $size=TyreSize::all();
+        return view('admin.tyresizes.list')->with('size',$size);
     }
 
     /**
@@ -42,7 +36,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('admin.customers.create');
+        return view('admin.tyresizes.create');
     }
 
     /**
@@ -54,17 +48,14 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
+            'title'=>'required',
+            'status'=>'required',            
         ]);
-        $user = new User;
-        $user->name=$request->input('name');
-        $user->email=$request->input('email');
-        $user->password=Hash::make($request->input('password'));
-        $user->email_verified_at=$request->input('email_verified_at');
-        $user->save();
-        return redirect()->route('customers.index')->with('success','Customer Created.');
+        $size=new TyreSize();
+        $size->title=$request->title;
+        $size->status=$request->status;
+        $size->save();
+        return redirect()->route('tyresizes.index')->with('success','Size Created.');
     }
 
     /**
@@ -75,7 +66,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('customers.index');
+        return redirect()->route('tyresizes.index');
     }
 
     /**
@@ -86,8 +77,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
-        return view('admin.customers.edit')->with('user',$user);
+        $size=TyreSize::find($id);
+        return view('admin.tyresizes.edit')->with('size',$size);
     }
 
     /**
@@ -99,12 +90,11 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user= User::find($id);
-        $user->name=$request->input('name');
-        $user->email=$request->input('email');
-        $user->email_verified_at=$request->input('email_verified_at');
-        $user->save();
-        return redirect()->route('customers.index')->with('success','Customer Updated.');        
+        $size=TyreSize::find($id);
+        $size->title=$request->title;
+        $size->status=$request->status;
+        $size->save();
+        return redirect()->route('tyresizes.index')->with('success','Size Updated.');
     }
 
     /**
@@ -115,6 +105,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $size=TyreSize::find($id);
+        $size->delete();
+        return redirect()->route('tyresizes.index')->with('success','Size Deleted.');
     }
 }

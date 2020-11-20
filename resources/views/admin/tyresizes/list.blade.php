@@ -4,19 +4,19 @@
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
-            <h2 class="pageheader-title">Customers</h2>            
+            <h2 class="pageheader-title">TyreSizes</h2>            
             <div class="page-breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>                        
-                        <li class="breadcrumb-item active" aria-current="page">Customers</li>
+                        <li class="breadcrumb-item active" aria-current="page">TyreSizes</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
 </div>
-<a href="{{ route('customers.create') }}" class=" mb-4 btn btn-success">Create Customer</a>
+<a href="{{ route('tyresizes.create') }}" class=" mb-4 btn btn-success">Create TyreSize</a>
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="card">            
@@ -26,29 +26,32 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Email-ID</th>
-                                <th>City</th>
-                                <th>Verified</th>
+                                <th>Size</th>
+                                <th>Enabled</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($user as $user)
+                            @foreach ($size as $size)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->addresses[0]->city }}</td>
+                                    <td>{{ $size->id }}</td>
+                                    <td>{{ $size->title }}</td>
                                     <td>
-                                        @if ($user->email_verified_at == null)
-                                            <p class="text-danger">Not Verified</p>
+                                        @if ($size->status == 0)
+                                            <p class="text-danger">Disabled</p>
                                         @else
-                                            <p class="text-success">Verified</p>
+                                            <p class="text-success">Enabled</p>
                                         @endif
                                     </td>
-                                    <td>
-                                        <a href="{{ route('customers.edit', $user->id)}}" class="btn btn-primary text-white"><i class="fas fa-edit mr-1"></i>Edit</a>
+                                    <td class="d-flex">
+                                        <a href="{{ route('tyresizes.edit', $size->id)}}" class="mr-2 btn btn-primary text-white"><i class="fas fa-edit mr-1"></i>Edit</a>
+                                        {!! Form::open([
+                                            'method' => 'DELETE',
+                                            'route' => ['tyresizes.destroy', $size->id]
+                                        ]) !!}
+                                            <button class='btn btn-danger' type='submit' value='submit'>
+                                                <i class='fa fa-trash'> </i> Delete</button>
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @endforeach

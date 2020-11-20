@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Address;
+use GuzzleHttp\Psr7\Request;
 
 class RegisterController extends Controller
 {
@@ -68,12 +69,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($_FILES['shoplicense']);
+        // dd($_SERVER['DOCUMENT_ROOT']);
+        $target_dir="storage/shoplicense/";
+        $file=$_FILES['shoplicense']['name'];
+        $fn=pathinfo($file,PATHINFO_FILENAME);
+        $ext=pathinfo($file,PATHINFO_EXTENSION);
+        $filename=$fn.'_'.time().'.'.$ext;
+        $target_dir=$target_dir.''.$fn.'_'.time().'.'.$ext;
+        $path=move_uploaded_file($_FILES["shoplicense"]["tmp_name"], $target_dir);
         $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'mobile'=>$data['mobile'],
             'password' => Hash::make($data['password']),            
-            'shop_license' => $data['shoplicense'],
+            'shop_license' => $filename,
         ]);
         $addr=new Address();
         $addr->address=$data['address'];

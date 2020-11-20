@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('owner/assets/vendor/datatables/css/buttons.bootstrap4.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('owner/assets/vendor/datatables/css/select.bootstrap4.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('owner/assets/vendor/datatables/css/fixedHeader.bootstrap4.css') }}">
-    <title>B2B ECommerce Application</title>
+    <title>B2B ECommerce Application Admin</title>
 </head>
 
 <body>
@@ -46,8 +46,8 @@
     <!-- sparkline js -->
     <script src="{{ asset('owner/assets/vendor/charts/sparkline/jquery.sparkline.js')}}"></script>
     <!-- morris js -->
-    <script src="{{ asset('owner/assets/vendor/charts/morris-bundle/raphael.min.js')}}"></script>
-    <script src="{{ asset('owner/assets/vendor/charts/morris-bundle/morris.js')}}"></script>
+    {{-- <script src="{{ asset('owner/assets/vendor/charts/morris-bundle/raphael.min.js')}}"></script>
+    <script src="{{ asset('owner/assets/vendor/charts/morris-bundle/morris.js')}}"></script> --}}
     <!-- chart c3 js -->
     <script src="{{ asset('owner/assets/vendor/charts/c3charts/c3.min.js')}}"></script>
     <script src="{{ asset('owner/assets/vendor/charts/c3charts/d3-5.4.0.min.js')}}"></script>
