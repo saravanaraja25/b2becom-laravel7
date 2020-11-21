@@ -34,7 +34,7 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="/">B2B E-Commerce Application<span class="splash-description">Reset Password</span></div>
+            <div class="card-header text-center"><a href="/">B2B E-Commerce Application<span class="splash-description">Reset Password</a></span></div>
             <div class="card-body">
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf

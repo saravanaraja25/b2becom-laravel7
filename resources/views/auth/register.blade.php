@@ -34,7 +34,7 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="/">B2B E-Commerce Application<span class="splash-description">Retailer Registration</span></div>
+            <div class="card-header text-center"><a href="/">B2B E-Commerce Application<span class="splash-description">Retailer Registration</a></span></div>
             <div class="card-body">
                 <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf

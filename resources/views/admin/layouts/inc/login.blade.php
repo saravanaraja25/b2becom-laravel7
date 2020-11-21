@@ -34,7 +34,7 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="#">B2B E-Commerce App<span class="splash-description">Administrator Login</span></div>
+            <div class="card-header text-center"><a href="#">B2B E-Commerce App<span class="splash-description">Administrator Login</a></span></div>
             <div class="card-body">
                 <form method="POST" action="{{ route('admin.login.submit') }}">
                     @csrf
