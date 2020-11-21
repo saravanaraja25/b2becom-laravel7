@@ -26,7 +26,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product=TyreSize::with('products')->get();
+        $product=Product::all();
         return view('admin.products.list')->with('product',$product);
     }
 
@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $size=TyreSize::all();
+        $size=TyreSize::all();      
         return view('admin.products.create')->with('size',$size);
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use App\TyreSize;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $product=Product::all();
+        $size=TyreSize::all();
+        return view('user.home')->with('product',$product)->with('size',$size);
     }
 }

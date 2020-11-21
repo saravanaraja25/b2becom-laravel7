@@ -8,6 +8,6 @@ class Product extends Model
 {
     public function size()
     {
-        $this->belongsTo('App\TyreSize', 'foreign_key');
+        return $this->belongsTo('App\TyreSize','tyre_size_id');
     }
 }

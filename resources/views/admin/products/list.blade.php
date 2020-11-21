@@ -35,27 +35,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($product as $products)
-                                @foreach($products->products as $product)
-                                    <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->title }}</td>
-                                        <td>{{ $products->title }}</td>
-                                        <td>{{ $product->brand }}</td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->stock }}</td>
-                                        <td class="d-flex">
-                                            <a href="{{ route('products.edit', $product->id)}}" class="mr-2 btn btn-primary text-white"><i class="fas fa-edit mr-1"></i>Edit</a>
-                                            {!! Form::open([
-                                                'method' => 'DELETE',
-                                                'route' => ['products.destroy', $product->id]
-                                            ]) !!}
-                                                <button class='btn btn-danger' type='submit' value='submit'>
-                                                    <i class='fa fa-trash'> </i> Delete</button>
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach ($product as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->title }}</td>
+                                    <td>{{ $product->size->title }}</td>
+                                    <td>{{ $product->brand }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td class="d-flex">
+                                        <a href="{{ route('products.edit', $product->id)}}" class="mr-2 btn btn-primary text-white"><i class="fas fa-edit mr-1"></i>Edit</a>
+                                        {!! Form::open([
+                                            'method' => 'DELETE',
+                                            'route' => ['products.destroy', $product->id]
+                                        ]) !!}
+                                            <button class='btn btn-danger' type='submit' value='submit'>
+                                                <i class='fa fa-trash'> </i> Delete</button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>                                
                             @endforeach
                         </tbody>
                     </table>
