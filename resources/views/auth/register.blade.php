@@ -1,112 +1,98 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('owner/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link href="{{ asset('owner/assets/vendor/fonts/circular-std/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('owner/assets/libs/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('owner/assets/vendor/fonts/fontawesome/css/fontawesome-all.css')}}">
+    <style>
+    html,
+    body {
+        height: 100%;
+    }
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    </style>
+</head>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
-
-                            <div class="col-md-6">
-                                <textarea name="address" id="address" cols="40" rows="5"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
-
-                            <div class="col-md-6">
-                                <input type="text" name="city" class="form-control" id="city">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="pin" class="col-md-4 col-form-label text-md-right">Pincode</label>
-
-                            <div class="col-md-6">
-                                <input type="text" name="pincode" class="form-control" id="pin">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="mob" class="col-md-4 col-form-label text-md-right">Mobile</label>
-
-                            <div class="col-md-6">
-                                <input type="text" name="mobile" class="form-control" id="pin">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="mob" class="col-md-4 col-form-label text-md-right">Shop License</label>
-
-                            <div class="col-md-6">
-                                <input type="file" name="shoplicense" class="form-control" id="pin">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<body>
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+    <div class="splash-container">
+        <div class="card ">
+            <div class="card-header text-center"><a href="/">B2B E-Commerce Application<span class="splash-description">Retailer Registration</span></div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <input class="form-control form-control-lg  @error('name') is-invalid @enderror" id="name" name="name" type="text" placeholder="Name"  required autocomplete="on" autofocus>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg  @error('email') is-invalid @enderror" id="email" name="email" type="email" placeholder="Email-ID"  required autocomplete="on" autofocus>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg  @error('password') is-invalid @enderror" id="password" type="password" name="password" required placeholder="Password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="password-confrim" type="password" name="password_confirmation" required placeholder="Password">                        
+                    </div>
+                    <div class="form-group">
+                        <textarea name="address" class="form-control form-control-lg" id="address" cols="40" placeholder="Enter Your Address" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="city" type="text" name="city" required placeholder="Enter Your City">                        
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="pincode" type="text" name="pincode" required placeholder="Enter Your Pincode">                        
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="mobile" type="text" name="mobile" required placeholder="Enter Your Mobile">                        
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" id="shoplicense" type="File" name="shoplicense" required placeholder="Upload Your Shop License">                        
+                    </div>                    
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                </form>                
+            </div>     
+            <a href="{{ route('login') }}" class="mt-1 text-center">Back To Login</a>       
         </div>
     </div>
-</div>
-@endsection
+  
+    <!-- ============================================================== -->
+    <!-- end login page  -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="{{ asset('owner/assets/vendor/jquery/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{ asset('owner/assets/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
+</body>
+ 
+</html>
