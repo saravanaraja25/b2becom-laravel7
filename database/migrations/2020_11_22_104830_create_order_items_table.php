@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductFeedbackTable extends Migration
+class CreateOrderItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateProductFeedbackTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_feedback', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            $table->string('product_name')->nullable();
+            $table->unsignedInteger('tyre_size_id');
+            $table->unsignedInteger('order_id');
             $table->unsignedInteger('product_id');
-            $table->unsignedInteger('user_id');
-            $table->integer('rating');
-            $table->string('feedback')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->double('unitprice')->nullable();
+            $table->double('unittotal')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateProductFeedbackTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_feedback');
+        Schema::dropIfExists('order_items');
     }
 }

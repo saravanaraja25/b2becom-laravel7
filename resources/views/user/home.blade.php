@@ -82,7 +82,9 @@
                                     <p class="p-2 bg-success text-white font-weight-bold text-center rounded">Stock : {{ $item->stock }}</p>
                                 </div>
                             </div>
-                            <form class="d-flex" action="">
+                            <form class="d-flex" action="{{ route('cart_save') }}" method="post">
+                                @csrf
+                                <input type="hidden" value="{{ $item->id }}" name="product_id">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <input type="number" value="1" max="{{ $item->stock}}" class="form-control mt-1" name="qty" id="qty">
@@ -92,9 +94,69 @@
                                     </div>
                                 </div>                                
                             </form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="justify-content-center d-flex">
+                                        <button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter_{{ $item->id}}">Add Review</button>
+                                    </div>
+                                </div>                                
+                            </div>
                         </div>
-                  
-                      </div>
+                    </div>
+                    <div class="modal fade" id="exampleModalCenter_{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Product Feedback and Review</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table class="table">
+                                            <tr>
+                                                <th>Tyre Name:</th>
+                                                <td>{{ $item->title}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Price:</th>
+                                                <td>Rs.{{ $item->price}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form action="{{ route('store_review') }}" method="POST" id="feedback_form_{{ $item->id }}">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="rating">Enter Your Rating:</label>
+                                                <select name="rating" class="form-control" id="rating" required>
+                                                    <option value="">Select</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="feedback">Enter your Reviews:</label>
+                                                <textarea class="form-control" name="feedback" id="feedback"></textarea>
+                                            </div>
+                                            <input type="hidden" value="{{ $item->id }}" name="product_id">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button form="feedback_form_{{ $item->id }}" type="submit" class="btn btn-secondary">Submit</button>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             @endforeach
         </div>

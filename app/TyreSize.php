@@ -10,4 +10,8 @@ class TyreSize extends Model
     {
         return $this->hasMany('App\Product');
     }
+    public function orderitems()
+    {
+        return $this->hasMany('App\OrderItems');
+    }
 }

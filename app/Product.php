@@ -10,4 +10,12 @@ class Product extends Model
     {
         return $this->belongsTo('App\TyreSize','tyre_size_id');
     }
+    public function feedbacks()
+    {
+        return $this->hasMany('App\ProductFeedback');
+    }
+    public function orderitems()
+    {
+        return $this->hasMany('App\OrderItem');
+    }
 }

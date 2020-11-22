@@ -20,7 +20,11 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-
+Route::post('/review', 'ProductFeedbackController@store')->name('store_review');
+Route::get('/cart', 'OrderController@index')->name('cart');
+Route::get('/cart-remove', 'OrderController@destroy')->name('cart_remove');
+Route::post('/cart', 'OrderController@store')->name('cart_save');
+Route::post('/cart/placeorder', 'OrderController@placeorder')->name('place_order');
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

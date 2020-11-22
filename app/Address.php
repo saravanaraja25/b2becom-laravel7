@@ -12,4 +12,8 @@ class Address extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function orders()
+    {
+        return $this->hasMany('App\Order');
+    }
 }
