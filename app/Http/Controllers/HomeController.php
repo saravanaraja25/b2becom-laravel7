@@ -27,6 +27,12 @@ class HomeController extends Controller
     {
         $product=Product::all();
         $size=TyreSize::all();
-        return view('user.home')->with('product',$product)->with('size',$size);
+        $brand=[];
+        $year=[];
+        foreach ($product as $key => $value) {
+            $brand[$value->brand]=$value->brand;
+            $year[$value->model]=$value->model;
+        }
+        return view('user.home')->with('product',$product)->with('size',$size)->with('brand',$brand)->with('year',$year);
     }
 }
