@@ -20,7 +20,11 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/my-account', 'HomeController@myaccount')->name('myaccount');
+Route::post('/my-account/update', 'HomeController@myaccountupdate')->name('myaccountupdate');
 Route::post('/review', 'ProductFeedbackController@store')->name('store_review');
+Route::get('/orders', 'OrderController@listorders')->name('listorders');
+Route::get('/orders/{id}', 'OrderController@show')->name('showorder');
 Route::get('/cart', 'OrderController@index')->name('cart');
 Route::get('/cart-remove', 'OrderController@destroy')->name('cart_remove');
 Route::post('/cart', 'OrderController@store')->name('cart_save');

@@ -46,10 +46,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Tyres</a>
+                            <a class="nav-link" href="{{ route('home') }}">Tyres</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Orders</a>
+                            <a class="nav-link" href="{{ route('listorders') }}">Orders</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Offers</a>
@@ -70,11 +70,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('myaccount') }}">
+                                        My Account
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
-                                    </a>
+                                    </a>                                    
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

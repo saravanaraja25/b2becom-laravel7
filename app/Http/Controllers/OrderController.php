@@ -89,7 +89,7 @@ class OrderController extends Controller
         }    
         $total_price=0;
         $order->user_id=Auth()->user()->id;
-        $order->address_id=Auth()->user()->addresses[0]->id;
+        $order->address_id=Auth()->user()->address;
         $order->total_price=$total_price;
         $order->grand_total=$total_price;
         $order->order_status='cart';
@@ -172,8 +172,32 @@ class OrderController extends Controller
      */
     public function destroy(Request $request)
     {
+        $user=Auth()->user();
         $orderitem=OrderItem::find($request->id);
         $orderitem->delete();
+        $order=Order::where([
+            ['user_id','=',$user->id],
+            ['order_status','=','cart']
+        ])->get()[0];
+        $total_price=0;
+        foreach ($order->orderitems as $key => $value) {
+            $total_price+=$value->unittotal;
+        }
+        $order->grand_total=$total_price-$order->discount_amount;
+        $order->total_price=$total_price;
+        $order->save();
         return redirect()->route('cart')->with('message','Item Removed');
+    }
+    public function listorders(){
+        $user=Auth()->user();
+        $order=Order::where([
+            ['user_id','=',$user->id],
+            ['order_status','!=','cart']
+        ])->get();
+        $status=[];
+        foreach ($order as $key => $value) {
+            $status[$value->order_status]=$value->order_status;
+        }
+        return view('user.order.orderlist')->with('order',$order)->with('orderstatus',$status);
     }
 }
