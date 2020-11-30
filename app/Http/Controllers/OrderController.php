@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Offer;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderItem;
@@ -199,5 +200,42 @@ class OrderController extends Controller
             $status[$value->order_status]=$value->order_status;
         }
         return view('user.order.orderlist')->with('order',$order)->with('orderstatus',$status);
+    }
+    public function coupon(Request $request){
+        $user=Auth()->user();
+        $order=Order::where([
+            ['user_id','=',$user->id],
+            ['order_status','=','cart']
+        ])->get()[0];
+        $offer=Offer::where([
+            ['coupon_code','=',$request->coupon_code]
+        ])->get();
+        if($offer!=null)
+        {
+            $offer=$offer[0];
+            if($offer->discount_type=='percent')
+            {
+                $percent=$offer->discount_value;
+                // dump($percent);
+                $order->discount_amount=$order->total_price / $percent;
+                // dump($order->discount_amount);
+                $order->grand_total=$order->total_price-($order->total_price / $percent);
+                // dd($order);
+                $order->save();
+                return redirect()->route('cart')->with('message','Coupon Applied');
+            }
+            else if($offer->discount_type=='amount'){
+                $order->discount_amount=$offer->discount_value;
+                $order->grand_total=$order->total_price - $order->discount_amount;
+                $order->save();
+                return redirect()->route('cart')->with('message','Coupon Applied');
+            }
+            else{
+                return redirect()->route('cart')->with('message','Coupon Error');
+            }
+        }
+        else{
+            return redirect()->route('cart')->with('message','Coupon Invalid');
+        }
     }
 }

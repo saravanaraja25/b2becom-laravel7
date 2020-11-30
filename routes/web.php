@@ -28,6 +28,7 @@ Route::get('/orders/{id}', 'OrderController@show')->name('showorder');
 Route::get('/cart', 'OrderController@index')->name('cart');
 Route::get('/cart-remove', 'OrderController@destroy')->name('cart_remove');
 Route::post('/cart', 'OrderController@store')->name('cart_save');
+Route::post('/applycoupon', 'OrderController@coupon')->name('coupon_apply');
 Route::post('/cart/placeorder', 'OrderController@placeorder')->name('place_order');
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -37,4 +38,5 @@ Route::prefix('admin')->group(function(){
     Route::resource('customers', 'Admin\CustomerController');
     Route::resource('tyresizes', 'Admin\TyreSizeController');
     Route::resource('products', 'Admin\ProductController');
+    Route::resource('offers', 'Admin\OfferController');
 });

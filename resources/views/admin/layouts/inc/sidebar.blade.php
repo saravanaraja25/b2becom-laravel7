@@ -20,7 +20,7 @@
                         <a class="nav-link " href="#" ><i class="fa fa-fw fa-star"></i>Feedback <span class="badge badge-success">6</span></a>
                     </li>
                     <li class="nav-item {{ (request()->is('admin/offers*')) ? 'active' : '' }}">
-                        <a class="nav-link " href="#" ><i class="fa fa-fw fa-calendar-check"></i>Offers <span class="badge badge-success">6</span></a>
+                        <a class="nav-link " href="{{ route('offers.index') }}" ><i class="fa fa-fw fa-calendar-check"></i>Offers <span class="badge badge-success">6</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ (request()->is('admin/customers*')) ? 'active' : '' }}" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-user"></i>Customers</a>

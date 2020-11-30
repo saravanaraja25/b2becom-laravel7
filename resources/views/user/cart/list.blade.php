@@ -52,7 +52,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <form action="{{ route('coupon_apply') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="coupon">Apply Coupon</label>
+                                <input class="form-control" type="text" name="coupon_code" id="coupon">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
+                        </form>
+                    </div>
                     <div class="col-md-6">
                         <table class="float-right">
                             <tr>
