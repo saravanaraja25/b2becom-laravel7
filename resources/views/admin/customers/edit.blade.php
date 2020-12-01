@@ -58,6 +58,9 @@
                                 </label>
                             @endif                        
                         </div>
+                        <div class="form-group">
+                            <button class="btn btn-secondary">View License</button>
+                        </div>
                     </div>
                     {{ Form::hidden('_method','PUT') }}
                     {{ Form::submit('Save Changes',['class'=>'btn btn-primary']) }}

@@ -39,4 +39,6 @@ Route::prefix('admin')->group(function(){
     Route::resource('tyresizes', 'Admin\TyreSizeController');
     Route::resource('products', 'Admin\ProductController');
     Route::resource('offers', 'Admin\OfferController');
+    Route::resource('orders', 'Admin\OrderController');
+    Route::resource('feedbacks', 'Admin\FeedbackController');
 });

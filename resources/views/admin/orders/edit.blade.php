@@ -33,20 +33,20 @@
                             @if ($size->status == 0)
                                 <label class="custom-control custom-radio custom-control-inline">
                                     {{ Form::radio('status', '1', false ,['class'=>'custom-control-input']) }}
-                                    <span class="custom-control-label">Enabled</span>
+                                    <span class="custom-control-label">Verified</span>
                                 </label>
                                 <label class="custom-control custom-radio custom-control-inline">
                                     {{ Form::radio('status', '0', true ,['class'=>'custom-control-input']) }}
-                                    <span class="custom-control-label">Not Enabled</span>
+                                    <span class="custom-control-label">Not Verified</span>
                                 </label>   
                             @else
                                 <label class="custom-control custom-radio custom-control-inline">
                                     {{ Form::radio('status', '1', true ,['class'=>'custom-control-input']) }}
-                                    <span class="custom-control-label">Enabled</span>
+                                    <span class="custom-control-label">Verified</span>
                                 </label>
                                 <label class="custom-control custom-radio custom-control-inline">
                                     {{ Form::radio('status', '0', false ,['class'=>'custom-control-input']) }}
-                                    <span class="custom-control-label">Not Enabled</span>
+                                    <span class="custom-control-label">Not Verified</span>
                                 </label>   
                             @endif                        
                         </div>

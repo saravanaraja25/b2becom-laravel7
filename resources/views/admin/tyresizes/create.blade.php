@@ -32,11 +32,11 @@
                         <div class="form-control border-0">
                             <label class="custom-control custom-radio custom-control-inline">
                                 {{ Form::radio('status', '1', true ,['class'=>'custom-control-input']) }}
-                                <span class="custom-control-label">Verified</span>
+                                <span class="custom-control-label">Enabled</span>
                             </label>
                             <label class="custom-control custom-radio custom-control-inline">
                                 {{ Form::radio('status', '0', false ,['class'=>'custom-control-input']) }}
-                                <span class="custom-control-label">Not Verified</span>
+                                <span class="custom-control-label">Disabled</span>
                             </label>          
                         </div>
                     </div>

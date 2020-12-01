@@ -50,9 +50,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('listorders') }}">Orders</a>
-                        </li>
+                        </li>                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Offers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart') }}">Cart</a>
                         </li>
                         @guest
                             <li class="nav-item">

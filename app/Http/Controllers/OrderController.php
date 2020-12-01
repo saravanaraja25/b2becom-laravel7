@@ -139,7 +139,18 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $user=Auth()->user();
+        $order=Order::where([
+            ['user_id','=',$user->id],
+            ['id','=',$id]
+        ])->get();
+        // dd($order);
+        if(count($order) >0){
+            return view('user.order.detail')->with('order',$order);
+        }else{
+            return redirect()->route('listorders');
+        }
+
     }
 
     /**
