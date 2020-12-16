@@ -69,7 +69,8 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order=Order::find($id);
+        return view('admin.orders.edit')->with('order',$order);
     }
 
     /**
@@ -81,7 +82,11 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $order=Order::find($id);
+        $order->delivery_status=$request->delivery_status;
+        $order->delivery_note=$request->delivery_note;
+        $order->save();
+        return redirect()->route('orders.index')->with('success','Order Updated.');
     }
 
     /**

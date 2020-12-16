@@ -53,6 +53,13 @@ class OrderController extends Controller
     public function placeorder(Request $request)
     {
         $order=Order::find($request->orderid);
+       
+        foreach($order->orderitems as $item){
+            // dump($item);
+            $product=Product::find($item->product_id);
+            $product->stock=$product->stock-$item->quantity;
+            $product->save();
+        }
         $order->order_status='placed';
         $order->save();
         return redirect()->route('home')->with('message','Order Placed Successfully');
