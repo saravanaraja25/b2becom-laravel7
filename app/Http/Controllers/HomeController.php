@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertisement;
 use Illuminate\Http\Request;
 use App\Product;
 use App\TyreSize;
@@ -65,5 +66,9 @@ class HomeController extends Controller
         // $user->email_verified_at=$request->input('email_verified_at');
         // $user->save();
         // return redirect()->route('customers.index')->with('success','Customer Updated.');        
+    }
+    public function advertisementlist(){
+        $adv=Advertisement::all();
+        return view('user.offer',compact('adv'));
     }
 }

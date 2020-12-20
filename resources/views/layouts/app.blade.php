@@ -52,7 +52,7 @@
                             <a class="nav-link" href="{{ route('listorders') }}">Orders</a>
                         </li>                        
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Offers</a>
+                            <a class="nav-link" href="{{ route('adv_list') }}">Offers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cart') }}">Cart</a>
