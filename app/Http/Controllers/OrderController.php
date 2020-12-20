@@ -61,6 +61,7 @@ class OrderController extends Controller
             $product->save();
         }
         $order->order_status='placed';
+        $order->delivery_status='placed';
         $order->save();
         return redirect()->route('home')->with('message','Order Placed Successfully');
     }

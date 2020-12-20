@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\Product;
+use App\TyreSize;
+use App\User;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -25,6 +30,23 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $orders = Order::whereDate('created_at', Carbon::today())->get();
+        $users = User::whereDate('created_at', Carbon::today())->get();
+        $cat=count(TyreSize::all());
+        $todaysale=0;
+        $totalsale=0;
+        $totalusers=count(User::all());
+        $newusers=count(User::whereDate('created_at', Carbon::today())->get());        
+        foreach($orders as $order){
+            $todaysale+=$order->grand_total;
+        }
+        $totorder=Order::where([
+            ['order_status','!=','cart']
+        ])->get();
+        $totproducts=Product::all();
+        foreach($totorder as $order){
+            $totalsale+=$order->grand_total;
+        }
+        return view('admin.dashboard',compact('cat','totorder','orders','todaysale','totalsale','totalusers','newusers','totproducts'));
     }
 }
