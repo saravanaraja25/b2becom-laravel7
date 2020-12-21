@@ -17,20 +17,24 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/my-account', 'HomeController@myaccount')->name('myaccount');
-Route::post('/my-account/update', 'HomeController@myaccountupdate')->name('myaccountupdate');
-Route::post('/review', 'ProductFeedbackController@store')->name('store_review');
-Route::get('/orders', 'OrderController@listorders')->name('listorders');
-Route::get('/orders/{id}', 'OrderController@show')->name('showorder');
-Route::get('/cart', 'OrderController@index')->name('cart');
-Route::get('/cart-remove', 'OrderController@destroy')->name('cart_remove');
-Route::post('/cart', 'OrderController@store')->name('cart_save');
-Route::post('/applycoupon', 'OrderController@coupon')->name('coupon_apply');
-Route::post('/cart/placeorder', 'OrderController@placeorder')->name('place_order');
-Route::get('/offers', 'HomeController@advertisementlist')->name('adv_list');
+Route::middleware(['verified'])->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/my-account', 'HomeController@myaccount')->name('myaccount');
+    Route::post('/my-account/update', 'HomeController@myaccountupdate')->name('myaccountupdate');
+    Route::post('/review', 'ProductFeedbackController@store')->name('store_review');
+    Route::get('/orders', 'OrderController@listorders')->name('listorders');
+    Route::get('/orders/{id}', 'OrderController@show')->name('showorder');
+    Route::get('/cart', 'OrderController@index')->name('cart');
+    Route::get('/cart-remove', 'OrderController@destroy')->name('cart_remove');
+    Route::post('/cart', 'OrderController@store')->name('cart_save');
+    Route::post('/applycoupon', 'OrderController@coupon')->name('coupon_apply');
+    Route::post('/cart/placeorder', 'OrderController@placeorder')->name('place_order');
+    Route::get('/offers', 'HomeController@advertisementlist')->name('adv_list');
+});
+
+
 Route::prefix('admin')->group(function(){
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

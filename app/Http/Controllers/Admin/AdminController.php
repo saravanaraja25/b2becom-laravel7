@@ -30,7 +30,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $orders = Order::whereDate('created_at', Carbon::today())->get();
+        $orders = Order::whereDate('updated_at', Carbon::today())->get();
         $users = User::whereDate('created_at', Carbon::today())->get();
         $cat=count(TyreSize::all());
         $todaysale=0;
