@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class AdvertisementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin'); // Here auth is middleware and admin is guard
+ 
+    }
     /**
      * Display a listing of the resource.
      *

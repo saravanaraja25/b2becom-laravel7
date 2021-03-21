@@ -212,6 +212,80 @@
             <!-- end customer acquistion  -->
             <!-- ============================================================== -->
         </div>
+
+
+        <div class="row">
+            <!-- ============================================================== -->
+      
+            <!-- ============================================================== -->
+
+                          <!-- recent orders  -->
+            <!-- ============================================================== -->
+            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <h5 class="card-header">Less Stock Products</h5>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="bg-light">
+                                    <tr class="border-0">
+                                        <th class="border-0">#</th>
+                                        <th class="border-0">Product Name</th>
+                                        <th class="border-0">Product Link</th>
+                                        <th class="border-0">Stock</th>
+                                        <th class="border-0">Price</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($lowproducts as $item)
+                                        <tr>
+                                            <td>{{$item->id}}</td>
+                                            <td>{{$item->title}}</td>  
+                                            <td class="text-success"><a class="text-danger" href="{{ route('admin.dashboard') }}/products/{{$item->id}}/edit">Edit Product</a></td>
+                                            <td>{{ $item->stock }}</td>
+                                            <td>Rs.{{ $item->price }}</td>                                            
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="9"><a href="{{ route('admin.dashboard') }}/orders" class="btn btn-outline-light float-right">View Details</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end recent orders  -->
+
+
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- customer acquistion  -->
+            <!-- ============================================================== -->
+            {{-- <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <h5 class="card-header">Customer Acquisition</h5>
+                    <div class="card-body">
+                        <div class="ct-chart ct-golden-section" style="height: 354px;"></div>
+                        <div class="text-center">
+                            <span class="legend-item mr-2">
+                                    <span class="fa-xs text-primary mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                            <span class="legend-text">Returning</span>
+                            </span>
+                            <span class="legend-item mr-2">
+
+                                    <span class="fa-xs text-secondary mr-1 legend-tile"><i class="fa fa-fw fa-square-full"></i></span>
+                            <span class="legend-text">First Time</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            <!-- ============================================================== -->
+            <!-- end customer acquistion  -->
+            <!-- ============================================================== -->
+        </div>
         
     </div>
 @endsection

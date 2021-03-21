@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Offer;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -36,7 +37,13 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return view('admin.offers.create');
+        $product=Product::all();
+        $brand=[];
+        foreach ($product as $key => $value) {
+            $brand[]=$value->brand;
+        }
+        $brand=array_unique($brand);
+        return view('admin.offers.create')->with('brand',$brand);
     }
 
     /**
@@ -57,6 +64,9 @@ class OfferController extends Controller
         $offer->coupon_code=$request->coupon_code;
         $offer->discount_type=$request->discount_type;
         $offer->discount_value=$request->discount_value;
+        $offer->expiry_date=$request->expiry_date;
+        $offer->brands=implode(",",$request->brand);
+        $offer->rules=$request->rule;
         $offer->save();
         return redirect()->route('offers.index')->with('success','Offer Created.');
     }
