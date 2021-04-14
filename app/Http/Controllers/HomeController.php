@@ -27,20 +27,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $req)
+    public function index()
     {
         $product=Product::all();
         $size=TyreSize::all();
         $brand=[];
         $year=[];
-        // dd($req->query);
-        // if(count($req->query)>0){
-        //     foreach ($req->query as $key => $value) {
-        //         if($req->brand){
-        //             $product
-        //         }
-        //     }
-        // }
         foreach ($product as $key => $value) {
             $brand[$value->brand]=$value->brand;
             $year[$value->model]=$value->model;

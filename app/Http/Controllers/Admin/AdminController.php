@@ -44,12 +44,9 @@ class AdminController extends Controller
             ['order_status','!=','cart']
         ])->get();
         $totproducts=Product::all();
-        $lowproducts=Product::where([
-            ['stock','<','20']
-        ])->get();
         foreach($totorder as $order){
             $totalsale+=$order->grand_total;
         }
-        return view('admin.dashboard',compact('cat','totorder','lowproducts','orders','todaysale','totalsale','totalusers','newusers','totproducts'));
+        return view('admin.dashboard',compact('cat','totorder','orders','todaysale','totalsale','totalusers','newusers','totproducts'));
     }
 }

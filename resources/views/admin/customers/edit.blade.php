@@ -59,7 +59,7 @@
                             @endif                        
                         </div>
                         <div class="form-group">
-                            <a target="_blank" href="{{ route('home') }}/storage/shoplicense/{{ $user->shop_license}}" class="btn btn-secondary">View License</a>
+                            <button class="btn btn-secondary">View License</button>
                         </div>
                     </div>
                     {{ Form::hidden('_method','PUT') }}
