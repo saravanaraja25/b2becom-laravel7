@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedInteger('tyre_size_id');
             $table->string('title');
-            $table->string('description',1500);
+            $table->string('description');
             $table->string('brand');
             $table->string('model');
             $table->string('image');
