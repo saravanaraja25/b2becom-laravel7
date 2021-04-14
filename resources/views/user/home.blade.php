@@ -4,7 +4,7 @@
 <div class="container">
     <h2 class="mt-3 page-head">Buy Tyres</h2>
     <div class="filter-search mt-4 mb-5">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-8">
                 <div class="input-group">
                     <input type="text" name="search" placeholder="Search - Example ( 2055516 - 205/55R16 )" class="form-control" value="">
@@ -53,7 +53,7 @@
                     </select> 
                 </div>
             </div>            
-        </div>
+        </div> -->
     </div>
     <div class="product-grid">
         <div class="row row-cols-1 row-cols-md-3">

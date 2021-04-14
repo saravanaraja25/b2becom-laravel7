@@ -38,14 +38,14 @@
                             <option value="amount">Amount</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         {{ Form::label('brands', 'Brands')}}
                         <select class="form-control" name="brand[]" multiple id="brand">
                             @foreach ($brand as $item)
                                 <option value="{{ $item }}">{{ $item }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         {{ Form::label('rule', 'Rule')}}
                         <select class="form-control" name="rule" id="rule">                            
@@ -57,10 +57,10 @@
                         {{ Form::label('discount_value', 'Discount Value')}}
                         {{ Form::number('discount_value','0',['class'=>'form-control']) }}
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         {{ Form::label('expiry_date', 'Expiry Date')}}
                         {{ Form::date('expiry_date','',['class'=>'form-control']) }}
-                    </div>
+                    </div> -->
                     {{ Form::submit('Create',['class'=>'btn btn-primary']) }}
                     <a href="{{ route('offers.index') }}" class="btn btn-light">Cancel</a>
                 {{ Form::close() }}

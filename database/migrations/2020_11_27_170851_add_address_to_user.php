@@ -13,8 +13,8 @@ class AddAddressToUser extends Migration
      */
     public function up()
     {
-        Schema::table('Users', function (Blueprint $table) {
-            $table->unsignedInteger('address');
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedInteger('address')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddAddressToUser extends Migration
      */
     public function down()
     {
-        Schema::table('Users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }
